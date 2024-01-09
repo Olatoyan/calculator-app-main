@@ -1,16 +1,21 @@
 import { CalculatorContextProps, useCalculator } from "../contexts/CalcContext";
+import { ColorContextProps, useColor } from "../contexts/ColorContext";
 import NumbersItems from "./NumbersItems";
 import NumbersItems2 from "./NumbersItems2";
 
 function NumbersSection() {
   const { inputNumber, calculateResult, clear, backspace, state } =
     useCalculator() as CalculatorContextProps;
+
+  const { state: stateColor } = useColor() as ColorContextProps;
+
+  const { theme } = stateColor;
+
   const { error } = state;
   const handleButtonClick = (value: number | string) => {
     // console.log(value);
     if (typeof value === "number" || value === ".") {
       inputNumber(value.toString());
-      console.log("qqqqqqqq");
     } else if (value === "del") {
       backspace();
     } else if (value === "reset") {
@@ -23,7 +28,13 @@ function NumbersSection() {
   };
 
   return (
-    <section className="grid grid-cols-4 gap-10 rounded-2xl bg-dark-blue-gray p-12">
+    <section
+      className={`grid grid-cols-4 gap-10 rounded-2xl  p-12 ${
+        theme === "theme-1" && "bg-dark-blue-gray"
+      } ${theme === "theme-2" && "bg-light-grey"} ${
+        theme === "theme-3" && "bg-dark-purple"
+      }`}
+    >
       <NumbersItems num={7} onClick={handleButtonClick} error={error} />
       <NumbersItems num={8} onClick={handleButtonClick} error={error} />
       <NumbersItems num={9} onClick={handleButtonClick} error={error} />

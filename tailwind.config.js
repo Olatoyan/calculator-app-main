@@ -6,6 +6,7 @@ export default {
       colors: {
         "theme-1-bg": "#3A4663",
         "theme-2-bg": "#E6E6E6",
+        "theme-3-bg": "#17062A",
         "very-dark-blue-gray": "#181F33",
         "dark-blue-gray": "#242D44",
         "medium-blue-gray": "#647198",
@@ -17,7 +18,6 @@ export default {
         teal: "#378187",
         red: "#d03f2f",
         orange: "#C85402",
-        purple: "#17062A",
         yellow: "#FFE53D",
         cyan: "#00DED0",
       },
@@ -34,6 +34,9 @@ export default {
       },
       fontFamily: {
         spartan: ["League Spartan", "sans-serif"],
+      },
+      screens: {
+        mobile: { max: "31.25em" },
       },
     },
   },

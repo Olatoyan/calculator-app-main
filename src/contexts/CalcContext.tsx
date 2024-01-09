@@ -49,7 +49,6 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
       return {
         ...state,
         displayValue: trimmedValue + (action.payload ?? ""),
-        testValue: trimmedValue + (action.payload ?? ""),
         newOperation: false,
         error: null,
       };
@@ -62,7 +61,6 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
         return {
           ...state,
           displayValue: result,
-          testValue: result,
           newOperation: false,
           error: null,
         };

@@ -4,7 +4,7 @@ import NumbersSection from "./NumbersSection";
 
 function HomeDetails() {
   return (
-    <section className="w-full max-w-[54rem] space-y-12">
+    <section className="w-full max-w-[58rem] space-y-12 px-8 py-6">
       <Header />
       <DisplaySection />
       <NumbersSection />

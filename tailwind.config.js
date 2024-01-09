@@ -31,6 +31,7 @@ export default {
         "theme-3-purple-sh": "0px -4px 0px 0px #BE15F4 inset",
         "theme-3-cyan-sh": "0px -4px 0px 0px #6CF9F1 inset",
         "theme-3-mid-purple-sh": " 0px -4px 0px 0px #881C9E inset",
+        "theme-3-error-purple-sh": " 0px -4px 0px 0px #c0c0c0 inset",
       },
       fontFamily: {
         spartan: ["League Spartan", "sans-serif"],

@@ -12,7 +12,7 @@ function NumbersItems2({ num, onClick }: NumbersItemsProps) {
 
   return (
     <button
-      className={` col-span-2 rounded-2xl py-5 text-[2.8rem] uppercase tracking-[-0.0667rem] text-white  ${
+      className={` mobile:text-[2rem] col-span-2 rounded-2xl py-5 text-[2.8rem] uppercase tracking-[-0.0667rem] text-white  ${
         num !== "=" &&
         theme === "theme-1" &&
         "bg-medium-blue-gray text-white shadow-theme-1-grey-sh hover:bg-[#a2b2e1]"

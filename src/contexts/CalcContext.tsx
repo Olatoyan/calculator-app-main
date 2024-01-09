@@ -44,11 +44,12 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
         state.displayValue === "0" || state.newOperation
           ? ""
           : state.displayValue;
-      // console.log(trimmedValue);
+
+      const newValue = trimmedValue + (action.payload ?? "");
 
       return {
         ...state,
-        displayValue: trimmedValue + (action.payload ?? ""),
+        displayValue: newValue,
         newOperation: false,
         error: null,
       };
@@ -65,8 +66,6 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
           error: null,
         };
       } catch (error) {
-        console.error("Error evaluating expression:", error);
-
         return { ...state, error: "ERROR!" };
       }
     case CalculatorActionType.CALCULATOR_BACKSPACE:

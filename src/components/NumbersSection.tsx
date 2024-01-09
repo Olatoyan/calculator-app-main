@@ -29,7 +29,7 @@ function NumbersSection() {
 
   return (
     <section
-      className={`grid grid-cols-4 gap-10 rounded-2xl  p-12 ${
+      className={`mobile:gap-6 mobile:p-8 grid grid-cols-4 gap-10 rounded-2xl p-12 ${
         theme === "theme-1" && "bg-dark-blue-gray"
       } ${theme === "theme-2" && "bg-light-grey"} ${
         theme === "theme-3" && "bg-dark-purple"

@@ -1,15 +1,16 @@
-import { useCalculator } from "../contexts/CalcContext";
+import { CalculatorContextProps, useCalculator } from "../contexts/CalcContext";
 import NumbersItems from "./NumbersItems";
 import NumbersItems2 from "./NumbersItems2";
 
 function NumbersSection() {
   const { inputNumber, calculateResult, clear, backspace, state } =
-    useCalculator();
+    useCalculator() as CalculatorContextProps;
   const { error } = state;
   const handleButtonClick = (value: number | string) => {
-    console.log(value);
+    // console.log(value);
     if (typeof value === "number" || value === ".") {
       inputNumber(value.toString());
+      console.log("qqqqqqqq");
     } else if (value === "del") {
       backspace();
     } else if (value === "reset") {

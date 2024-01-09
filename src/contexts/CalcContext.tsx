@@ -2,8 +2,9 @@ import { Dispatch, createContext, useContext, useReducer } from "react";
 
 type CalculatorState = {
   displayValue: string;
-  rawValue: number;
+  testValue: string;
   error: string | null;
+  newOperation: boolean;
 };
 
 const enum CalculatorActionType {
@@ -11,6 +12,7 @@ const enum CalculatorActionType {
   CALCULATOR_EQUALS,
   CALCULATOR_CLEAR,
   CALCULATOR_BACKSPACE,
+  CALCULATOR_NEW_OPERATION,
 }
 
 type CalculatorAction = {
@@ -19,29 +21,36 @@ type CalculatorAction = {
 };
 
 // Define the context type
-type CalculatorContextProps = {
+export type CalculatorContextProps = {
   state: CalculatorState;
   dispatch: Dispatch<CalculatorAction>;
   inputNumber: (number: string) => void;
-  calculateResult: (number: string) => void;
+  calculateResult: () => void;
   clear: () => void;
   backspace: () => void;
+  newOperation: () => void;
 };
 
 const initialState: CalculatorState = {
   displayValue: "",
-  rawValue: 0,
+  testValue: "",
   error: null,
+  newOperation: false,
 };
 
 function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
   switch (action.type) {
     case CalculatorActionType.CALCULATOR_INPUT_NUMBER: {
-      const trimmedValue = state.displayValue === "0" ? "" : state.displayValue;
+      // const trimmedValue = state.displayValue === "0" ? "" : state.displayValue;
+      const trimmedValue =
+        state.displayValue === "0" || state.newOperation
+          ? ""
+          : state.displayValue;
 
       return {
         ...state,
         displayValue: trimmedValue + (action.payload ?? ""),
+        newOperation: false,
         error: null,
       };
     }
@@ -53,6 +62,7 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
         return {
           ...state,
           displayValue: result.toLocaleString(),
+          newOperation: false,
           error: null,
         };
       } catch (error) {
@@ -70,9 +80,15 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
     case CalculatorActionType.CALCULATOR_CLEAR:
       return {
         ...state,
-        rawValue: 0,
+        testValue: "",
         displayValue: "",
+        newOperation: false,
         error: null,
+      };
+    case CalculatorActionType.CALCULATOR_NEW_OPERATION:
+      return {
+        ...state,
+        newOperation: true,
       };
     default:
       return state;
@@ -105,6 +121,10 @@ function CalculatorProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: CalculatorActionType.CALCULATOR_BACKSPACE });
   }
 
+  function newOperation() {
+    dispatch({ type: CalculatorActionType.CALCULATOR_NEW_OPERATION });
+  }
+
   return (
     <CalculatorContext.Provider
       value={{
@@ -113,6 +133,7 @@ function CalculatorProvider({ children }: { children: React.ReactNode }) {
         calculateResult,
         clear,
         backspace,
+        newOperation,
         dispatch,
       }}
     >

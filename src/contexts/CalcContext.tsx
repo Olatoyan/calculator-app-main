@@ -2,7 +2,6 @@ import { Dispatch, createContext, useContext, useReducer } from "react";
 
 type CalculatorState = {
   displayValue: string;
-  testValue: string;
   error: string | null;
   newOperation: boolean;
 };
@@ -33,7 +32,6 @@ export type CalculatorContextProps = {
 
 const initialState: CalculatorState = {
   displayValue: "",
-  testValue: "",
   error: null,
   newOperation: false,
 };
@@ -46,10 +44,12 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
         state.displayValue === "0" || state.newOperation
           ? ""
           : state.displayValue;
+      // console.log(trimmedValue);
 
       return {
         ...state,
         displayValue: trimmedValue + (action.payload ?? ""),
+        testValue: trimmedValue + (action.payload ?? ""),
         newOperation: false,
         error: null,
       };
@@ -61,12 +61,12 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
         console.log(result);
         return {
           ...state,
-          displayValue: result.toLocaleString(),
+          displayValue: result,
+          testValue: result,
           newOperation: false,
           error: null,
         };
       } catch (error) {
-        // Handle invalid expressions or other errors
         console.error("Error evaluating expression:", error);
 
         return { ...state, error: "ERROR!" };
@@ -80,7 +80,6 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
     case CalculatorActionType.CALCULATOR_CLEAR:
       return {
         ...state,
-        testValue: "",
         displayValue: "",
         newOperation: false,
         error: null,

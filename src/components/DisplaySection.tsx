@@ -22,7 +22,7 @@ function DisplaySection() {
 
   return (
     <section
-      className={`mobile:text-[4rem] mobile:tracking-[-0.0667rem] flex h-[12.8rem] w-full items-center justify-end break-words rounded-[1rem] pr-[3.2rem] text-[5.6rem] tracking-[-0.0933rem] ${
+      className={`flex h-[12.8rem] w-full items-center justify-end break-words rounded-[1rem] pr-[3.2rem] text-[5.6rem] tracking-[-0.0933rem] mobile:text-[4rem] mobile:tracking-[-0.0667rem] ${
         theme === "theme-1" && "bg-very-dark-blue-gray text-white"
       } ${theme === "theme-2" && "bg-[#eee] text-[#36362C]"} ${
         theme === "theme-3" && "bg-dark-purple text-yellow"

@@ -49,7 +49,7 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
 
       return {
         ...state,
-        displayValue: newValue,
+        displayValue: newValue.toString(),
         newOperation: false,
         error: null,
       };
@@ -69,7 +69,7 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
     case CalculatorActionType.CALCULATOR_BACKSPACE:
       return {
         ...state,
-        displayValue: state.displayValue.slice(0, -1),
+        displayValue: String(state.displayValue).slice(0, -1),
         error: null,
       };
     case CalculatorActionType.CALCULATOR_CLEAR:

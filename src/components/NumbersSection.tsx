@@ -13,7 +13,7 @@ function NumbersSection() {
 
   const { error } = state;
   const handleButtonClick = (value: number | string) => {
-    // console.log(value);
+    
     if (typeof value === "number" || value === ".") {
       inputNumber(value.toString());
     } else if (value === "del") {

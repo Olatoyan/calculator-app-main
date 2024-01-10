@@ -56,9 +56,7 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
     }
     case CalculatorActionType.CALCULATOR_EQUALS:
       try {
-        console.log(state.displayValue);
         const result = eval(state.displayValue);
-        console.log(result);
         return {
           ...state,
           displayValue: result,

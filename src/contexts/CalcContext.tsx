@@ -57,9 +57,12 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction) {
     case CalculatorActionType.CALCULATOR_EQUALS:
       try {
         const result = eval(state.displayValue);
+        const roundedResult = Number.isInteger(result)
+          ? result
+          : result.toFixed(4);
         return {
           ...state,
-          displayValue: result,
+          displayValue: roundedResult,
           newOperation: false,
           error: null,
         };

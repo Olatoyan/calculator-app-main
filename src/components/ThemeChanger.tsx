@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { ColorContextProps, useColor } from "../contexts/ColorContext";
 
 function ThemeChanger() {
@@ -47,24 +48,27 @@ function ThemeChanger() {
         <div
           className={`flex h-[2.7rem] w-[7.1rem] justify-evenly rounded-[1.3rem] bg-dark-blue-gray p-2`}
         >
-          <div
+          <motion.div
+            layoutId="theme-1"
             className={`h-[1.6rem] w-[1.6rem] cursor-pointer rounded-full ${
               theme === "theme-1" && "bg-red"
             }`}
             onClick={() => changeTheme("theme-1")}
-          ></div>
-          <div
+          ></motion.div>
+          <motion.div
+            layoutId="theme-1"
             className={`h-[1.6rem] w-[1.6rem] cursor-pointer rounded-full ${
               theme === "theme-2" && "bg-orange"
             }`}
             onClick={() => changeTheme("theme-2")}
-          ></div>
-          <div
+          ></motion.div>
+          <motion.div
+            layoutId="theme-1"
             className={`h-[1.6rem] w-[1.6rem] cursor-pointer rounded-full ${
               theme === "theme-3" && "bg-cyan"
             }`}
             onClick={() => changeTheme("theme-3")}
-          ></div>
+          ></motion.div>
         </div>
         {/* <div
           className={`relative h-[2.6rem] w-[7.1rem] rounded-[1.3rem] bg-dark-blue-gray before:absolute before:left-2 before:top-2 before:h-[1.6rem] before:w-[1.6rem] before:rounded-full before:bg-red`}

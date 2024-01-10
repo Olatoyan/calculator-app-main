@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { ColorContextProps, useColor } from "../contexts/ColorContext";
 
 type NumbersItemsProps = {
@@ -16,7 +17,7 @@ function NumbersItems({ num, onClick, error }: NumbersItemsProps) {
   const isTheme2 = theme === "theme-2";
   const isTheme3 = theme === "theme-3";
   return (
-    <button
+    <motion.button
       className={` rounded-2xl  tracking-[-0.0667rem] ${
         isDeleteButton
           ? "mobile:text-[2rem] text-[2.8rem] uppercase"
@@ -91,9 +92,19 @@ function NumbersItems({ num, onClick, error }: NumbersItemsProps) {
       `}
       onClick={() => onClick(num.toString())}
       disabled={error ? true : false}
+      whileTap={{
+        y: 15,
+        scale: 0.8,
+        transition: {
+          duration: 0.07,
+          type: "spring",
+          ease: "easeOut",
+          bounce: 0.5,
+        },
+      }}
     >
       {num}
-    </button>
+    </motion.button>
   );
 }
 

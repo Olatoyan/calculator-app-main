@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { ColorContextProps, useColor } from "../contexts/ColorContext";
 
 type NumbersItemsProps = {
@@ -6,12 +7,12 @@ type NumbersItemsProps = {
 };
 
 function NumbersItems2({ num, onClick }: NumbersItemsProps) {
-  const { state } = useColor() as ColorContextProps;
-
-  const { theme } = state;
+  const {
+    state: { theme },
+  } = useColor() as ColorContextProps;
 
   return (
-    <button
+    <motion.button
       className={` mobile:text-[2rem] col-span-2 rounded-2xl py-5 text-[2.8rem] uppercase tracking-[-0.0667rem] text-white  ${
         num !== "=" &&
         theme === "theme-1" &&
@@ -38,9 +39,19 @@ function NumbersItems2({ num, onClick }: NumbersItemsProps) {
         "shadow-theme-1-cyan-sh bg-cyan text-[#1a2327] hover:bg-[#93FFF8]"
       } `}
       onClick={() => onClick(num.toString())}
+      whileTap={{
+        y: 15,
+        scale: 0.8,
+        transition: {
+          duration: 0.07,
+          type: "spring",
+          ease: "easeOut",
+          bounce: 0.5,
+        },
+      }}
     >
       {num}
-    </button>
+    </motion.button>
   );
 }
 
